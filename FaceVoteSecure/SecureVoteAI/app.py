@@ -49,7 +49,7 @@ def create_app():
     app.config['MAIL_PORT'] = 587
     app.config['MAIL_USE_TLS'] = True
     app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER', 'electioncomission101@gmail.com')
-    app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_APP_PASSWORD', 'trqcsubsfkimwbrp')
+    app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_APP_PASSWORD', '')
     app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('EMAIL_FROM', 'Election Commission <electioncomission101@gmail.com>')
     
     # App specific configuration
