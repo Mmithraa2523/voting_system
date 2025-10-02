@@ -1,0 +1,111 @@
+
+{% extends "base.html" %}
+
+{% block title %}Smart Voting System - Welcome{% endblock %}
+
+{% block content %}
+<div class="voting-bg">
+    <div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
+        <div class="text-center">
+            <h1 class="display-3 text-white mb-5 voting-title">Smart Voting System</h1>
+            <p class="lead text-white mb-5">Secure Digital Democracy with Face Recognition</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card voting-card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title text-center mb-4">Election Commission</h3>
+                            <p class="card-text text-center mb-4">Manage voters, parties, candidates, and view results</p>
+                            <button class="btn btn-primary btn-lg mt-auto" data-bs-toggle="modal" data-bs-target="#loginModal" data-login-type="admin">
+                                Access Admin Panel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card voting-card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title text-center mb-4">Polling System</h3>
+                            <p class="card-text text-center mb-4">Cast your vote securely with face authentication</p>
+                            <button class="btn btn-success btn-lg mt-auto" data-bs-toggle="modal" data-bs-target="#loginModal" data-login-type="polling">
+                                Start Voting
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalTitle">Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <input type="hidden" id="loginType" name="type">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Handle modal show event to set login type
+const loginModal = document.getElementById('loginModal');
+loginModal.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    const loginType = button.getAttribute('data-login-type');
+    
+    document.getElementById('loginType').value = loginType;
+    document.getElementById('loginModalTitle').textContent = 
+        loginType === 'admin' ? 'Election Commission Login' : 'Polling System Login';
+});
+
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData);
+    
+    fetch('{{ url_for("auth.login") }}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = data.redirect;
+        } else {
+            alert(data.message || 'Login failed');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Login failed - please check your credentials');
+    });
+});
+</script>
+{% endblock %}

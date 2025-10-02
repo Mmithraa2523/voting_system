@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Candidate - Smart Voting System{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Edit Candidate</h1>
+        <a href="{{ url_for('admin.candidates') }}" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Back to Candidates
+        </a>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="card">
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Candidate Name *</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ candidate.name }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="party_id" class="form-label">Political Party *</label>
+                    <select class="form-select" id="party_id" name="party_id" required>
+                        {% for party in parties %}
+                            <option value="{{ party.id }}" {% if party.id == candidate.party_id %}selected{% endif %}>
+                                {{ party.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Current Photo</label>
+                    <div class="text-center mb-3">
+                        {% if candidate.image_path %}
+                            <img src="{{ url_for('static', filename=candidate.image_path.replace('static/', '')) }}" 
+                                 alt="{{ candidate.name }}" 
+                                 class="img-thumbnail" 
+                                 style="max-height: 200px;">
+                        {% else %}
+                            <p class="text-muted">No photo uploaded</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload New Photo (Optional)</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                    <div class="form-text">Leave empty to keep the current photo</div>
+                </div>
+
+                <div class="mb-3">
+                    <div id="imagePreview" class="text-center d-none">
+                        <p class="text-muted">New photo preview:</p>
+                        <img id="preview" class="img-thumbnail" style="max-height: 200px;">
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{{ url_for('admin.candidates') }}" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('image').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('preview').src = e.target.result;
+            document.getElementById('imagePreview').classList.remove('d-none');
+        }
+        reader.readAsDataURL(file);
+    }
+});
+</script>
+{% endblock %}
