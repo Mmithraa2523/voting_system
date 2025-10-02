@@ -1,0 +1,309 @@
+PS D:\FaceVoteSecure\SecureVoteAI> python app.py
+C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\flask_limiter\extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\flask_limiter\extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+ * Debugger is active!
+ * Debugger PIN: 814-127-634
+127.0.0.1 - - [02/Oct/2025 13:15:15] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:15:15] "GET /static/css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:15:15] "GET /static/js/app.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:15:15] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [02/Oct/2025 13:15:26] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:15:26] "GET /admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:15:26] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:15:26] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:15:28] "GET /admin/voters HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:15:28] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:15:28] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:15:30] "GET /admin/voters/add HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:15:30] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:15:30] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:15:58] "POST /admin/voters/add HTTP/1.1" 302 -
+127.0.0.1 - - [02/Oct/2025 13:15:58] "GET /admin/voters HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:15:58] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:15:58] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:16:10] "GET /admin/voters?page=1 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:16:10] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:16:10] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:16:29] "GET /admin/voters HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:16:29] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:16:29] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:16:34] "GET /admin/voters/add HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:16:34] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:16:34] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:16:41] "GET /admin/voters HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:16:41] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:16:41] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:16:57] "GET /admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:17:00] "GET /admin/voters HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:17:00] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:17:00] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:17:08] "GET /admin/parties HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:17:08] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:17:08] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:17:17] "GET /logout HTTP/1.1" 302 -
+127.0.0.1 - - [02/Oct/2025 13:17:17] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:17:17] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:17:17] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:17:28] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:17:28] "GET /poll/auth/start HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:17:28] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:17:28] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:17:43] "POST /poll/auth/verify HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:17:53] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:17:53] "GET /poll/auth/start HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:17:53] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:17:53] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:18:02] "POST /poll/auth/verify HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:18:12] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:18:12] "GET /admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:18:12] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:18:12] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:18:17] "GET /admin/voters HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:18:17] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:18:17] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:18:20] "GET /admin/voters/1/enroll-face HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:18:20] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:18:20] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:18:28] "GET /admin/voters/1/edit HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:18:28] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:18:28] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:18:44] "GET /admin/voters/1/enroll-face HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:18:44] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:18:44] "GET /static/js/app.js HTTP/1.1" 304 -
+Error encoding face: 'tuple' object has no attribute 'tolist'
+127.0.0.1 - - [02/Oct/2025 13:19:08] "POST /admin/voters/1/enroll-face HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:19:22] "POST /admin/voters/1/enroll-face HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:19:30] "POST /admin/voters/1/enroll-face HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:19:34] "POST /admin/voters/1/enroll-face HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:19:37] "POST /admin/voters/1/enroll-face HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:19:39] "POST /admin/voters/1/enroll-face HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:19:48] "GET /admin/voters HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:19:48] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:19:48] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:19:55] "GET /admin/voters/1/enroll-face HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:20:05] "GET /admin/voters HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:20:05] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:20:05] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:21:39] "GET /admin/parties HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:21:39] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:21:39] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:21:41] "GET /admin/parties/add HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:21:41] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:21:41] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:21:54] "POST /admin/parties/add HTTP/1.1" 302 -
+127.0.0.1 - - [02/Oct/2025 13:21:54] "GET /admin/parties HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:21:54] "GET /static/uploads\\party_symbols\\a151c20f-1bd3-4159-b17f-676626c7dcf0_moon.jpg HTTP/1.1" 404 -
+127.0.0.1 - - [02/Oct/2025 13:21:54] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:21:54] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:22:42] "GET /admin/parties HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:22:43] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:22:43] "GET /static/uploads\\party_symbols\\a151c20f-1bd3-4159-b17f-676626c7dcf0_moon.jpg HTTP/1.1" 404 -
+127.0.0.1 - - [02/Oct/2025 13:22:43] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:22:44] "GET /admin/parties HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:22:44] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:22:44] "GET /static/uploads\\party_symbols\\a151c20f-1bd3-4159-b17f-676626c7dcf0_moon.jpg HTTP/1.1" 404 -
+127.0.0.1 - - [02/Oct/2025 13:22:44] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:22:46] "GET /admin/parties/1/edit HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:22:46] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:22:46] "GET /static/uploads\\party_symbols\\a151c20f-1bd3-4159-b17f-676626c7dcf0_moon.jpg HTTP/1.1" 404 -
+127.0.0.1 - - [02/Oct/2025 13:22:46] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:23:32] "POST /admin/parties/1/edit HTTP/1.1" 302 -
+127.0.0.1 - - [02/Oct/2025 13:23:32] "GET /admin/parties HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:23:32] "GET /static/uploads\\party_symbols\\ef5f4bb9-4a94-4edd-8890-831fb8730b8c_moon.jpg HTTP/1.1" 404 -
+127.0.0.1 - - [02/Oct/2025 13:23:32] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:23:32] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:23:36] "GET /admin/parties/1/edit HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:23:37] "GET /admin/parties HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:23:39] "GET /admin/parties/add HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:23:45] "GET /admin/candidates HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:23:45] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:23:45] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:23:46] "GET /admin/candidates/add HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 13:23:46] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 13:23:46] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:00:11] "POST /admin/candidates/add HTTP/1.1" 302 -
+127.0.0.1 - - [02/Oct/2025 14:00:11] "GET /admin/candidates HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:00:11] "GET /static/uploads\\candidate_images\\469f0ffe-e73f-459a-a82c-82bb682d0d1f_images.jpeg HTTP/1.1" 404 -
+127.0.0.1 - - [02/Oct/2025 14:00:11] "GET /static/uploads\\party_symbols\\ef5f4bb9-4a94-4edd-8890-831fb8730b8c_moon.jpg HTTP/1.1" 404 -
+127.0.0.1 - - [02/Oct/2025 14:00:11] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:00:11] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:00:22] "GET /admin/candidates/add HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:00:23] "GET /admin/candidates HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:00:24] "GET /admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:00:27] "GET /logout HTTP/1.1" 302 -
+127.0.0.1 - - [02/Oct/2025 14:00:27] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:00:27] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:00:27] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:00:39] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:00:39] "GET /poll/auth/start HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:00:39] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:00:39] "GET /static/js/app.js HTTP/1.1" 304 -
+Error encoding face: 'tuple' object has no attribute 'tolist'
+127.0.0.1 - - [02/Oct/2025 14:01:45] "POST /poll/auth/verify HTTP/1.1" 200 -
+Error encoding face: 'tuple' object has no attribute 'tolist'
+127.0.0.1 - - [02/Oct/2025 14:01:54] "POST /poll/auth/verify HTTP/1.1" 200 -
+Exception in thread Thread-197 (_send_email_async):
+Traceback (most recent call last):
+  File "C:\Program Files\Python311\Lib\threading.py", line 1045, in _bootstrap_inner
+127.0.0.1 - - [02/Oct/2025 14:02:03] "POST /poll/auth/verify HTTP/1.1" 200 -
+    self.run()
+  File "C:\Program Files\Python311\Lib\threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "D:\FaceVoteSecure\SecureVoteAI\services\email_service.py", line 24, in _send_email_async
+    current_app.logger.error(f"Failed to send email: {str(e)}")
+    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\werkzeug\local.py", line 318, in __get__
+    obj = instance._get_current_object()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\werkzeug\local.py", line 519, in _get_current_object
+    raise RuntimeError(unbound_message) from None
+RuntimeError: Working outside of application context.
+
+This typically means that you attempted to use functionality that needed
+the current application. To solve this, set up an application context
+with app.app_context(). See the documentation for more information.
+127.0.0.1 - - [02/Oct/2025 14:02:05] "GET /poll/ballot HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:02:05] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:02:05] "GET /uploads/party_symbols/ef5f4bb9-4a94-4edd-8890-831fb8730b8c_moon.jpg HTTP/1.1" 404 -        
+127.0.0.1 - - [02/Oct/2025 14:02:05] "GET /static/js/app.js HTTP/1.1" 304 -
+Exception in thread Thread-207 (_send_email_async):
+Traceback (most recent call last):
+  File "C:\Program Files\Python311\Lib\threading.py", line 1045, in _bootstrap_inner
+127.0.0.1 - - [02/Oct/2025 14:03:34] "POST /poll/auth/verify HTTP/1.1" 200 -
+    self.run()
+  File "C:\Program Files\Python311\Lib\threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "D:\FaceVoteSecure\SecureVoteAI\services\email_service.py", line 24, in _send_email_async
+    current_app.logger.error(f"Failed to send email: {str(e)}")
+    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\werkzeug\local.py", line 318, in __get__
+    obj = instance._get_current_object()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\werkzeug\local.py", line 519, in _get_current_object
+    raise RuntimeError(unbound_message) from None
+RuntimeError: Working outside of application context.
+
+This typically means that you attempted to use functionality that needed
+the current application. To solve this, set up an application context
+with app.app_context(). See the documentation for more information.
+127.0.0.1 - - [02/Oct/2025 14:03:36] "GET /poll/ballot HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:03:36] "GET /uploads/party_symbols/ef5f4bb9-4a94-4edd-8890-831fb8730b8c_moon.jpg HTTP/1.1" 404 -
+127.0.0.1 - - [02/Oct/2025 14:03:36] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:03:36] "GET /static/js/app.js HTTP/1.1" 304 -
+Exception in thread Thread-216 (_send_email_async):
+Traceback (most recent call last):
+  File "C:\Program Files\Python311\Lib\threading.py", line 1045, in _bootstrap_inner
+127.0.0.1 - - [02/Oct/2025 14:04:32] "POST /poll/auth/verify HTTP/1.1" 200 -
+    self.run()
+  File "C:\Program Files\Python311\Lib\threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "D:\FaceVoteSecure\SecureVoteAI\services\email_service.py", line 24, in _send_email_async
+    current_app.logger.error(f"Failed to send email: {str(e)}")
+    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\werkzeug\local.py", line 318, in __get__
+    obj = instance._get_current_object()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\werkzeug\local.py", line 519, in _get_current_object
+    raise RuntimeError(unbound_message) from None
+RuntimeError: Working outside of application context.
+
+This typically means that you attempted to use functionality that needed
+the current application. To solve this, set up an application context
+with app.app_context(). See the documentation for more information.
+127.0.0.1 - - [02/Oct/2025 14:04:34] "GET /poll/ballot HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:04:34] "GET /uploads/party_symbols/ef5f4bb9-4a94-4edd-8890-831fb8730b8c_moon.jpg HTTP/1.1" 404 -
+127.0.0.1 - - [02/Oct/2025 14:04:34] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:04:34] "GET /static/js/app.js HTTP/1.1" 304 -
+Exception in thread Thread-223 (_send_email_async):
+Traceback (most recent call last):
+  File "C:\Program Files\Python311\Lib\threading.py", line 1045, in _bootstrap_inner
+127.0.0.1 - - [02/Oct/2025 14:07:20] "POST /poll/vote HTTP/1.1" 200 -
+    self.run()
+  File "C:\Program Files\Python311\Lib\threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "D:\FaceVoteSecure\SecureVoteAI\services\email_service.py", line 24, in _send_email_async
+    current_app.logger.error(f"Failed to send email: {str(e)}")
+    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\werkzeug\local.py", line 318, in __get__
+    obj = instance._get_current_object()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\werkzeug\local.py", line 519, in _get_current_object
+    raise RuntimeError(unbound_message) from None
+RuntimeError: Working outside of application context.
+
+This typically means that you attempted to use functionality that needed
+the current application. To solve this, set up an application context
+with app.app_context(). See the documentation for more information.
+127.0.0.1 - - [02/Oct/2025 14:07:23] "GET /poll/success HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:07:23] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:07:23] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:07:26] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:07:26] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:07:26] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:07:37] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:07:37] "GET /admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:07:37] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:07:37] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:07:42] "GET /results/live HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:07:42] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:07:42] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:07:50] "GET /results/export/csv HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:08:00] "GET /results/export/excel HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\flask\app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\flask\app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\FaceVoteSecure\SecureVoteAI\blueprints\results\routes.py", line 106, in export_excel
+    with pd.ExcelWriter(output, engine='openpyxl') as writer:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mithr\AppData\Roaming\Python\Python311\site-packages\pandas\io\excel\_openpyxl.py", line 57, in __init__
+    from openpyxl.workbook import Workbook
+ModuleNotFoundError: No module named 'openpyxl'
+127.0.0.1 - - [02/Oct/2025 14:08:00] "GET /results/export/excel?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:08:00] "GET /results/export/excel?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:08:00] "GET /results/export/excel?__debugger__=yes&cmd=resource&f=console.png&s=dFVMog5x82b8Izlht5TZ HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:08:00] "GET /results/export/excel?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:08:09] "GET /results/export/pdf HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:08:59] "GET /admin/voters HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:08:59] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:08:59] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:09:57] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:09:57] "GET /poll/auth/start HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:09:57] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:09:57] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:10:14] "POST /poll/auth/verify HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:10:23] "POST /poll/auth/verify HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:10:38] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:10:38] "GET /admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:10:38] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:10:38] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:10:43] "GET /admin/parties HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:10:43] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:10:43] "GET /static/js/app.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:10:43] "GET /static/uploads\\party_symbols\\ef5f4bb9-4a94-4edd-8890-831fb8730b8c_moon.jpg HTTP/1.1" 404 -
+127.0.0.1 - - [02/Oct/2025 14:21:23] "GET /results/live HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2025 14:21:23] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Oct/2025 14:21:23] "GET /static/js/app.js HTTP/1.1" 304 -

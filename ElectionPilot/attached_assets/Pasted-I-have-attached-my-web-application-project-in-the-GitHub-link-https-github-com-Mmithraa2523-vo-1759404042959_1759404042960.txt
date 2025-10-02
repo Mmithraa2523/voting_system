@@ -1,0 +1,80 @@
+I have attached my web application project in the GitHub link:
+👉 https://github.com/Mmithraa2523/voting_system
+
+Currently, the project has the following issues that need to be fixed:
+
+1. Face Detection Issue
+
+Even when a fake face is provided, the system still shows “Voter verified successfully” and allows voting.
+
+This should be fixed so that only valid registered faces are verified.
+
+Functional Requirements for Face Detection:
+
+Capture Face
+
+Open webcam when user clicks "Start Camera".
+
+Detect a face in the live stream.
+
+Draw a bounding box around the detected face.
+
+Save Face Encodings
+
+Extract 128-D face encodings from captured images.
+
+Save encodings in the database or a folder for later recognition.
+
+Authenticate Face
+
+Compare the live face encoding against stored encodings.
+
+If match (distance < 0.6) → show "Authentication Successful".
+
+If no match → show "Authentication Failed".
+
+Optional Features
+
+Allow up to 5 reference images per voter for higher accuracy.
+
+Add anti-spoofing (blink/head movement detection).
+
+Save all attempts (success/failure) with timestamp and image in logs.
+
+2. Email Verification Issue
+
+Currently, email alerts are not being sent.
+
+Fix this so that email notifications work properly.
+
+Email Alert Requirements:
+
+On successful voting (face matches):
+
+Show green success alert on screen.
+
+Send an email notification to the voter.
+
+On fake face detection (face mismatch):
+
+Show red alert on screen.
+
+Play a beep sound.
+
+Send an email notification for security.
+
+3. Polling System Issue
+
+Candidate and party images are not visible during voting (only names are shown).
+
+Fix image display so that voters can clearly see both candidate names and their images during the polling process.
+
+⚡ Project Objectives (Most Important)
+
+Accurate Face Detection for voter verification.
+
+Fully working Email Verification/Alerts system.
+
+Clear Candidate and Party Image display in the polling system.
+
+Both Face Detection and Email Verification must function properly as they are the core features of the project.
