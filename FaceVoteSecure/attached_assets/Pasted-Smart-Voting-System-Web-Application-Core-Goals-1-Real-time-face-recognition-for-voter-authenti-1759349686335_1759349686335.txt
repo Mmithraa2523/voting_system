@@ -1,0 +1,233 @@
+Smart Voting System — Web Application 
+Core Goals
+1.	Real-time face recognition for voter authentication
+2.	Automatic email alerts on both successful voting and authentication failures (with captured photo, Voter ID, and timestamp)
+________________________________________
+Tech Stack
+•	Frontend: HTML, CSS, JavaScript (Webcam via getUserMedia)
+•	Backend: Python Flask
+•	Database: PostgreSQL 
+•	AI Model: face_recognition (dlib; ResNet-34 embeddings)
+•	Email: SMTP (Gmail) using an app password (not a personal password)
+________________________________________
+App Structure
+🔐 Login Page (Landing)
+•	Fullscreen background related to voting (e.g., ballot boxes, people voting).
+•	Two large buttons:
+o	Election Commission
+o	Polling System
+•	Clicking either reveals a login form (modal or slide-in):
+o	Uses default admin credentials (configurable via .env or DB).
+o	On success, redirect to the selected section.
+________________________________________
+🏛️ Election Commission Section (Admin)
+Main Menu
+1.	Voters
+o	Add/manage voter records:
+	Name
+	Age
+	Date of Birth
+	Voter ID Number (unique)
+	Gender
+	Email
+	Face enrollment via webcam (capture 1–5 images; store 128-D encoding(s))
+o	Actions: Create, Read, Update, Delete (CRUD)
+o	Bulk import (CSV) optional
+2.	Parties
+o	Manage political parties and candidates:
+	Party Name
+	Party Symbol (image upload; SVG/PNG)
+	Candidate Name (per party)
+	Candidate image(image upload)
+o	CRUD + image validation (type/size)
+3.	Results
+o	Live vote counts per party and candidate, auto-refresh
+o	Winner declaration (max votes; tie handling rule required)
+o	Export reports (CSV + PDF) including:
+	Totals, per-party, per-candidate breakdown
+	Number of NOTA votes
+	Timestamp and election metadata
+o	Option to reset tallies for a new election (with double confirmation)
+________________________________________
+🗳️ Polling System Section (Voter)
+Step 1 — Voter Authentication
+•	Input: Voter ID Number
+•	System verifies:
+1.	Voter exists and hasn’t voted yet
+2.	Real-time face verification via webcam
+	Detect face using face_recognition.face_locations(image, model="hog" | "cnn")
+	Default: hog (CPU friendly); Config option: cnn (more accurate, higher compute)
+	Generate 128-D face encoding via dlib/ResNet-34
+	Compare with stored encoding(s) using Euclidean distance
+	Match if distance < 0.6 (threshold configurable)
+If Face Matches (Success)
+•	Redirect to Voting Page
+If Face Does Not Match (Failure)
+•	Trigger:
+o	Red blinking screen
+o	Beeping alarm sound
+o	Email alert from electioncomission101@gmail.com to:
+	mithraa1906@gmail.com (Election Commissioner)
+	The voter’s registered email
+o	Email content must include:
+	Captured photo of the person attempting (attach image)
+	Voter ID used
+	Timestamp (UTC and local time)
+
+Step 2 — Voting Page
+•	Display list of:
+o	Party Names
+o	Party Symbols
+o	Candidate Names
+o	Candidate image
+•	Options:
+o	Select one candidate or NOTA
+•	On submission:
+o	Record the vote (atomic DB transaction)
+o	Mark voter as voted
+o	Send confirmation email to the voter:
+	Subject: “Vote Cast Successfully”
+	Body: Party/Candidate (or NOTA) + timestamp + reference ID
+o	Show on-screen success page
+________________________________________
+AI / Face Recognition Details
+1.	Detection
+o	face_recognition.face_locations(image, model="hog") (default)
+o	Configurable to model="cnn" when GPU or high compute is available
+2.	Recognition
+o	Deep Metric Learning (dlib, ResNet-34)
+o	Create 128-D embeddings
+o	Compare via Euclidean distance
+o	Threshold 0.6 (configurable per deployment)
+o	Store multiple embeddings per voter (improves robustness)
+3.	 Anti-Spoofing
+o	Simple liveness checks:
+	Blink detection prompt or head-turn prompt
+	Frame-to-frame consistency
+o	Log suspicion score; still send alerts on mismatch
+________________________________________
+Security & Compliance
+•	Store credentials, SMTP settings, and thresholds in .env (use python-dotenv)
+•	Never store plaintext email/app passwords in code or repo
+•	Hash admin passwords 
+•	Use CSRF protection for forms; validate file uploads (MIME/size)
+•	HTTPS in production
+•	Audit logs for:
+o	Logins (admin and polling)
+o	Auth successes/failures (with metadata)
+o	Vote casting events (no PII tied to ballot choice beyond allowed reporting)
+•	Rate limit authentication endpoints
+•	Ensure one vote per voter (DB unique constraints + transactional logic)
+________________________________________
+Database Schema (Illustrative)
+voters
+•	id (pk)
+•	voter_id (unique)
+•	name
+•	age
+•	dob (date)
+•	gender
+•	email (unique)
+•	has_voted (boolean, default false)
+•	created_at, updated_at
+voter_faces
+•	id (pk)
+•	voter_id (fk → voters.id)
+•	encoding (vector serialized as 128 floats; store as JSON or BYTEA)
+•	image_snapshot_path (optional)
+•	created_at
+parties
+•	id (pk)
+•	name (unique)
+•	symbol_path (string)
+•	created_at, updated_at
+candidates
+•	id (pk)
+•	party_id (fk → parties.id)
+•	name
+•	created_at, updated_at
+votes
+•	id (pk)
+•	voter_id (fk → voters.id, unique) // ensures one vote per voter
+•	candidate_id (nullable fk → candidates.id) // null if NOTA
+•	nota (boolean default false; enforce XOR with candidate_id)
+•	cast_at (timestamp)
+•	audit_ref (string)
+auth_events
+•	id (pk)
+•	voter_id (nullable fk → voters.id) // may be unknown on fraud
+•	voter_id_input (string)
+•	result (enum: success|mismatch|unknown)
+•	distance (float, nullable)
+•	snapshot_path (string)
+•	ip_address, user_agent
+•	created_at
+________________________________________
+API Endpoints (Representative)
+Auth / Sessions
+•	POST /login – admin/polling login
+Admin
+•	GET/POST/PUT/DELETE /admin/voters
+•	POST /admin/voters/{id}/enroll-face – capture & store embeddings
+•	GET/POST/PUT/DELETE /admin/parties
+•	GET/POST/PUT/DELETE /admin/candidates
+•	GET /admin/results/live – JSON counts
+•	GET /admin/results/export.csv
+•	GET /admin/results/export.pdf
+•	POST /admin/election/reset (double confirm)
+Polling
+•	POST /poll/auth/start – submit Voter ID, open webcam session
+•	POST /poll/auth/verify – upload frame(s), return match/mismatch (+distance)
+•	GET /poll/ballot – list parties/candidates/NOTA
+•	POST /poll/vote – record vote (atomic), send success email
+Alerts
+•	Internal service to send emails on:
+o	mismatch with photo attachment
+o	vote_success confirmation
+________________________________________
+Email Requirements
+SMTP Sender: electioncomission101@gmail.com (use Gmail app password(trqc subs fkim wbrp))
+
+On Successful Vote (to voter):
+•	Subject: “Your vote has been recorded”
+•	Body:
+o	“Dear {Name}, your vote was recorded on {timestamp}. Choice: {Party/Candidate or NOTA}. Reference: {audit_ref}.”
+On Authentication Failure (to mithraa1906@gmail.com AND voter):
+•	Subject: “ALERT: Face authentication failure for Voter ID {VoterID}”
+•	Body includes:
+o	Voter ID used
+o	Timestamp (UTC and local)
+o	Distance score (if available)
+o	IP/User-Agent (if available)
+o	Attached captured photo from the attempt
+________________________________________
+Frontend Interactions
+•	Webcam: Use navigator.mediaDevices.getUserMedia({ video: true })
+•	Red Blink + Beep: CSS animation for background flash; HTML5 Audio for beep
+•	Accessibility: High-contrast buttons, keyboard navigation
+•	Validation: Inline form validation; descriptive errors
+________________________________________
+Result Logic & Reporting
+•	Live tallies (poll every 2–5 seconds or server-sent events)
+•	Winner = candidate with the most votes; define tie policy (e.g., “tie — no auto winner; admin decides”)
+•	Include NOTA in totals
+•	Exports:
+o	CSV: headers for parties, candidates, counts, NOTA, totals
+o	PDF: summary + charts (optional)
+________________________________________
+Configuration (via .env)
+•	ADMIN_DEFAULT_USER, ADMIN_DEFAULT_PASS
+•	DB_URL (PostgreSQL)
+•	EMAIL_USER, EMAIL_APP_PASSWORD, EMAIL_FROM
+•	FACE_MODEL = hog | cnn
+•	FACE_THRESHOLD = 0.6
+•	ALERT_RECIPIENT = mithraa1906@gmail.com
+________________________________________
+Acceptance Criteria (Key)
+•	✅ Voter can authenticate only if face match and valid Voter ID
+•	✅ On mismatch, red blink + beep + email alert with photo is sent to commissioner and voter
+•	✅ On successful vote, record saved, voter locked, confirmation email sent
+•	✅ Admin can CRUD voters (with face enrollment), parties, candidates
+•	✅ Results show live counts, winner, and export works
+•	✅ All secrets in .env; passwords hashed; uploads validated
+________________________________________
