@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block title %}Enroll Face - {{voter.name}} - Smart Voting System{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Face Enrollment for {{voter.name}}</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Capture Face Images</h5>
+                    <p>Voter ID: <strong>{{voter.voter_id}}</strong></p>
+                    <p>Capture up to 5 images for accurate face recognition</p>
+                    
+                    <div class="mb-3" style="position: relative; display: inline-block;">
+                        <video id="webcam" width="640" height="480" autoplay style="border: 2px solid #ccc; border-radius: 8px;"></video>
+                        <canvas id="overlay" width="640" height="480" style="position: absolute; top: 0; left: 0; pointer-events: none;"></canvas>
+                        <div id="statusOverlay" style="position: absolute; bottom: 10px; left: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 10px; border-radius: 5px; display: none;">
+                            <strong id="statusText">Ready</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <p>Images captured: <span id="imageCount">0</span> / 5</p>
+                        <div id="capturedPreviews" class="d-flex flex-wrap gap-2"></div>
+                    </div>
+                    
+                    <button class="btn btn-primary" id="startWebcam">Start Webcam</button>
+                    <button class="btn btn-success" id="captureImage" style="display: none;">Capture Image</button>
+                    <button class="btn btn-info" id="finishEnrollment" style="display: none;">Finish Enrollment</button>
+                    <a href="{{ url_for('admin.voters') }}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let webcamStream = null;
+let video = document.getElementById('webcam');
+let capturedImages = [];
+const MAX_IMAGES = 5;
+const csrfToken = '{{ csrf_token() }}';
+
+document.getElementById('startWebcam').addEventListener('click', async function() {
+    try {
+        webcamStream = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480 } });
+        video.srcObject = webcamStream;
+        document.getElementById('captureImage').style.display = 'inline-block';
+        this.style.display = 'none';
+        
+        // Start live preview feedback
+        startLivePreview();
+    } catch (error) {
+        alert('Unable to access webcam: ' + error.message);
+    }
+});
+
+// Live preview with face detection feedback
+let previewInterval = null;
+function startLivePreview() {
+    const statusOverlay = document.getElementById('statusOverlay');
+    statusOverlay.style.display = 'block';
+    
+    previewInterval = setInterval(() => {
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0);
+        
+        // Simple brightness check
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        let brightness = 0;
+        for (let i = 0; i < data.length; i += 4) {
+            brightness += (data[i] + data[i+1] + data[i+2]) / 3;
+        }
+        brightness = brightness / (data.length / 4);
+        
+        const statusText = document.getElementById('statusText');
+        if (brightness < 40) {
+            statusText.textContent = '⚠️ Too dark - add more light';
+            statusText.style.color = '#ff6b6b';
+        } else if (brightness > 220) {
+            statusText.textContent = '⚠️ Too bright - reduce light';
+            statusText.style.color = '#ff6b6b';
+        } else {
+            statusText.textContent = '✓ Good lighting - ready to capture';
+            statusText.style.color = '#51cf66';
+        }
+    }, 500);
+}
+
+function stopLivePreview() {
+    if (previewInterval) {
+        clearInterval(previewInterval);
+        previewInterval = null;
+    }
+}
+
+document.getElementById('captureImage').addEventListener('click', function() {
+    if (capturedImages.length >= MAX_IMAGES) {
+        alert('Maximum 5 images already captured');
+        return;
+    }
+    
+    const canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0);
+    
+    const imageData = canvas.toDataURL('image/jpeg');
+    
+    // Send to server
+    fetch('/admin/voters/{{ voter.id }}/enroll-face', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+        },
+        body: JSON.stringify({ image_data: imageData })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            capturedImages.push(imageData);
+            updateUI();
+            
+            if (capturedImages.length >= MAX_IMAGES) {
+                document.getElementById('captureImage').style.display = 'none';
+                document.getElementById('finishEnrollment').style.display = 'inline-block';
+                alert('Maximum 5 images captured! Click Finish Enrollment to complete.');
+            }
+        } else {
+            alert('Error: ' + data.message);
+        }
+    })
+    .catch(error => {
+        alert('Error enrolling face: ' + error.message);
+    });
+});
+
+document.getElementById('finishEnrollment').addEventListener('click', function() {
+    stopLivePreview();
+    if (webcamStream) {
+        webcamStream.getTracks().forEach(track => track.stop());
+    }
+    alert('Face enrollment completed successfully!');
+    window.location.href = '{{ url_for("admin.voters") }}';
+});
+
+function updateUI() {
+    document.getElementById('imageCount').textContent = capturedImages.length;
+    
+    const previewsDiv = document.getElementById('capturedPreviews');
+    previewsDiv.innerHTML = '';
+    
+    capturedImages.forEach((img, index) => {
+        const imgElement = document.createElement('img');
+        imgElement.src = img;
+        imgElement.style.width = '100px';
+        imgElement.style.height = '75px';
+        imgElement.style.border = '1px solid #ccc';
+        imgElement.style.borderRadius = '4px';
+        imgElement.title = `Image ${index + 1}`;
+        previewsDiv.appendChild(imgElement);
+    });
+    
+    if (capturedImages.length > 0) {
+        document.getElementById('finishEnrollment').style.display = 'inline-block';
+    }
+}
+</script>
+{% endblock %}
